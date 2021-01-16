@@ -13,7 +13,7 @@ class AdminSeeder extends Seeder
     {
         $admin = new \App\User;
         $admin->username = "administrator";
-        $admin->roles = json_encode(["ADMIN"]);
+        $admin->roles = "admin";
         //$admin->name = "Administrator";
         $admin->email = "afrizalyasin423@gmail.com";
         $admin->password = \Hash::make("admin123");
@@ -24,7 +24,7 @@ class AdminSeeder extends Seeder
 
         $si = new \App\User;
         $si->username = "adminsifo";
-        $si->roles = json_encode(["ADMINSI"]);
+        $si->roles = "adminsi";
         //$si->name = "Administrator Sistem Informasi";
         $si->email = "afrizal@gmail.com";
         $si->password = \Hash::make("admin123");
@@ -35,7 +35,7 @@ class AdminSeeder extends Seeder
 
         $tf = new \App\User;
         $tf->username = "admintf";
-        $tf->roles = json_encode(["ADMINTF"]);
+        $tf->roles = "admintf";
         //$tf->name = "Administrator Teknik Informatika";
         $tf->email = "afrizal2499@gmail.com";
         $tf->password = \Hash::make("admin123");
