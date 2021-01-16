@@ -29,12 +29,17 @@
                         </ol>
                     </nav>
                 </div>
+                @if(auth()->user()->roles == 'admin' || auth()->user()->roles == 'adminsi' || auth()->user()->roles == 'admintf')
+                <!-- menghilangkan tambah pkl -->
+                @endif
+                @if(auth()->user()->roles == 'mahasiswatf' || auth()->user()->roles == 'mahasiswasi')
                 <div class="col-lg-6 col-5 text-right">
                     <a
                         href="{{ url('/dashboard/admin/mahasiswa/pkl/create') }}"
                         class="btn btn-sm btn-neutral">Tambah Data PKL</a>
-                    {{-- <a href="#" class="btn btn-sm btn-neutral">Kelola PKL</a> --}}
                 </div>
+                @endif
+                
             </div>
         </div>
     </div>
@@ -44,51 +49,6 @@
     <!-- Table -->
     <div class="row">
         <div class="col">
-            {{-- <div class="card">
-                <!-- Card header -->
-                <div class="card-header">
-                    <h3 class="mb-0">Datatable</h3>
-                    <p class="text-sm mb-0">
-                        This is an exmaple of datatable using the well known datatables.net plugin. This
-                        is a minimal setup in order to get started fast.
-                    </p>
-                </div>
-                <div class="table-responsive py-4">
-                    <table class="table table-flush" id="datatable-basic">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                        </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
-                                <th>Start date</th>
-                                <th>Salary</th>
-                            </tr>
-                        </tfoot>
-                        <tbody>
-                            <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>61</td>
-                                <td>2011/04/25</td>
-                                <td>$320,800</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div> --}}
             <div class="card">
                 <!-- Card header -->
                 <div class="card-header">
@@ -98,39 +58,39 @@
                         UPN "Veteran" Jawa Timur.
                     </p>
                 </div>
-                <div class="table-responsive py-4">
-                    <table class="table table-flush" id="datatable-buttons">
+                <div class="table-responsive">
+                    <table class="table table-responsive" id="datatable-buttons">
                         <thead class="thead-light">
                             <tr>
+                                <th>ID</th>
                                 <th>Nama Mahasiswa</th>
                                 <th>NPM Mahasiswa</th>
-                                <th>Jurusan</th>
+                                <th>Jabatan</th>
+                                <th>Angkatan</th>
                                 <th>Judul</th>
                                 <th>Instansi</th>
-                                <th>Dospem</th>
-                                <th>Action</th>
+                                <th>Jurusan</th>
+                                <th>Pembimbing</th>
+                                <th>Keterangan</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th>Nama Mahasiswa</th>
-                                <th>NPM Mahasiswa</th>
-                                <th>Jurusan</th>
-                                <th>Judul</th>
-                                <th>Instansi</th>
-                                <th>Dospem</th>
-                                <th>Action</th>
-                            </tr>
-                        </tfoot>
+                        
+                        
                         <tbody>
                             <tr>
-                                <td>Afrizal Muhammad Yasin</td>
-                                <td>17081010092</td>
-                                <td>Informatika</td>
-                                <td>Sistem Informasi Aduan Mahasiswa</td>
-                                <td>UPN</td>
-                                <td>Faisal M</td>
-                                <td>
+                            @foreach($pkl as $e )
+                                <td>{{$e->id_pkl}}</td>
+                                <td>{{$e->nama}}</td>
+                                <td>{{$e->npm}}</td>
+                                <td>{{$e->jabatan}}</td>
+                                <td>{{$e->angkatan}}</td>
+                                <td>{{$e->judul}}</td>
+                                <td>{{$e->instansi}}</td>
+                                <td>{{$e->jurusan}}</td>
+                                <td>{{$e->pembimbing}}</td>
+                                <td>{{$e->keterangan}}</td>
+                                <td> 
                                     <form action="" onsubmit="return confirm('Hapus data 1 ?')" method="post">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
@@ -139,54 +99,11 @@
                                             type="submit"
                                             name="action"
                                             value="PUBLISH">Hapus
-
                                         </button>
                                     </form>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>Afrizal Muhammad Yasin</td>
-                                <td>17081010092</td>
-                                <td>Informatika</td>
-                                <td>Sistem Informasi Akademik Mahasiswa</td>
-                                <td>UPN</td>
-                                <td>Faisal M</td>
-                                <td>
-                                    <form action="" onsubmit="return confirm('Hapus data 1 ?')" method="post">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <button
-                                            class="red btn waves-effect waves-light btn-danger"
-                                            type="submit"
-                                            name="action"
-                                            value="PUBLISH">Hapus
-
-                                        </button>
-                                    </form>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Afrizal Muhammad Yasin</td>
-                                <td>17081010092</td>
-                                <td>Informatika</td>
-                                <td>Sistem Informasi Prestasi Mahasiswa</td>
-                                <td>UPN</td>
-                                <td>Faisal M</td>
-                                <td>
-                                    <form action="" onsubmit="return confirm('Hapus data 1 ?')" method="post">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <button
-                                            class="red btn waves-effect waves-light btn-danger"
-                                            type="submit"
-                                            name="action"
-                                            value="PUBLISH">Hapus
-
-                                        </button>
-                                    </form>
-                                </td>
-
-                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>

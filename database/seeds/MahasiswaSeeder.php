@@ -15,12 +15,12 @@ class MahasiswaSeeder extends Seeder
     {
 
         $faker = Faker::create('id_ID');
-
-        DB::table('users')->insert([
-        'email' => '17081010105@student.upnjatim.ac.id',
-        'roles' => 'mahasiswatf',
-        'password' => Hash::make($faker->numberBetween(10000000, 99999999)),
+        for ($i=100; $i <=150 ; $i++) { 
+            DB::table('pkl')->insert([
+                'email' => '18081010'.$i.'@student.upnjatim.ac.id',
+                'roles' => 'mahasiswatf',
+                'password' => Hash::make($faker->numberBetween(10000000, 99999999)),        
     ]);
-
+}
     }
 }

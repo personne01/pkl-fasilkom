@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pkl;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PklController extends Controller
 {
@@ -18,8 +19,10 @@ class PklController extends Controller
     }
     public function index()
     {
-        return view('admin.pkl.index');
+        // return view('admin.pkl.index');
         //
+        $pkl = DB::table('pkl')->get();
+        return view('admin.pkl.index',['pkl' => $pkl]);
     }
 
     /**
@@ -28,8 +31,32 @@ class PklController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+        // return view('create');
         return view('admin.pkl.create');
+    }
+
+    public function send_create(Request $request)
+    {   
+        // return view('create');
+        // return view('admin.pkl.create');
+  
+        // insert data ke table pegawai
+        DB::table('pkl')->insert([
+            'nama' => $request->nama,
+            'npm' => $request->npm,
+            'jabatan' => $request->jabatan,
+            'angkatan' => $request->angkatan,
+            'judul' => $request->judul,
+            'instansi' => $request->instansi,
+            'jurusan' => $request->jurusan,
+            'pembimbing' => $request->pembimbing,
+            'keterangan' => $request->keterangan
+        ]);
+        // alihkan halaman ke halaman pegawai
+        return redirect('/pkl/create');
+ 
+
     }
 
     /**

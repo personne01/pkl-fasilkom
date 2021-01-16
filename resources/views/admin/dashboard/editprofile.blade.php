@@ -27,11 +27,11 @@
                                             </a>
                                         </li>
                                         <li class="breadcrumb-item">
-                                            <a href="{{ url('/dashboard/admin/mahasiswa/pkl') }}">
-                                                PKL
+                                            <a href="{{ url('/dashboard/admin/mahasiswa/') }}">
+                                                Dashboard
                                             </a>
                                         </li>
-                                        <li class="breadcrumb-item active" aria-current="page">Tambah PKL</li>
+                                        <li class="breadcrumb-item active" aria-current="page">Edit User</li>
                                     </ol>
                                 </nav>
                             </div>
@@ -52,64 +52,17 @@
                             {{ csrf_field() }}
                                 <!-- Card header -->
                                 <div class="card-header">
-                                    <h3 class="mb-0">Tambah Data PKL</h3>
+                                    <h3 class="mb-0">Edit Profile</h3>
                                 </div>
                                 <!-- Card body -->
                                 <div class="card-body">
 
                                     <div class="form-group">
-                                    <label for="nm">Nama Mahasiswa</label>
-                                        <input type="text" name="nama"  class="form-control" id="nm">
+                                    <label for="nm">Username</label>
+                                        <input type="text" name="username"  class="form-control" id="nm" value="{{auth()->user()->username}}">
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="npm" >NPM Mahasiswa</label>
-                                        <input type="text" name="npm" class="form-control" id="npm">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="exampleFormControlSelect1" name="jurusan">Program Studi</label>
-                                        <select class="form-control" id="exampleFormControlSelect1" name="jurusan">
-                                            <option value="Informatika">Informatika</option>
-                                            <option value="Sistem Informasi">Sistem Informasi</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="exampleFormControlSelect1">Angkatan</label>
-                                        <select class="form-control" id="exampleFormControlSelect1" name="angkatan">
-                                            <option value="2016">2016</option>
-                                            <option value="2017">2017</option>
-                                            <option value="2018">2018</option>
-                                            <option value="2019">2019</option>
-                                            <option value="2020">2020</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="ta">Judul PKL</label>
-                                        <input type="text" name="judul" class="form-control" id="ta">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="ds1">Instansi</label>
-                                        <input type="text" name="instansi" class="form-control" id="ds1">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="form-control-label" for="exampleFormControlSelect1">Dosen pembimbing</label>
-                                        <select class="form-control" id="exampleFormControlSelect1" name="pembimbing">
-                                            <option value="Sugiarto, S.Kom, M.Kom">Sugiarto, S.Kom, M.Kom</option>
-                                            <option value="Wahyu S J Saputra, S.Kom, M.Kom">Wahyu S J Saputra, S.Kom, M.Kom</option>
-                                            <option value="Yisti Vita Via, S.ST, M.Kom">Yisti Vita Via, S.ST, M.Kom</option>
-                                            <option value="Fawwas Ali Akbar, S.Kom, M.Kom">Fawwas Ali Akbar, S.Kom, M.Kom</option>
-                                            <option value="Dr. Basuki Rahmat, S.Si, MT">Dr. Basuki Rahmat, S.Si, MT</option>
-                                            <option value="Achmad Junaidi, S.Kom, M.Kom">Achmad Junaidi, S.Kom, M.Kom</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="ds2">Keterangan</label>
-                                        <input type="text" name="keterangan" class="form-control" id="ds2">
-                                    </div>
-
+                                    
                                 </div>
 
                             </div>
@@ -134,6 +87,9 @@
                                 </div>
                             </div>
                         </form>
+                </div>
+                
+                </div>
                                         <!-- Argon Scripts -->
                                         @endsection @section('script')
                                         <!-- Argon Scripts -->

@@ -10,7 +10,15 @@
             name="description"
             content="Start your development with a Dashboard for Bootstrap 4.">
         <meta name="author" content="Creative Tim">
-        <title>@yield('judul_halaman') | Admin FIK</title>
+        @if(auth()->user()->roles == 'admin' || auth()->user()->roles == 'adminsi' || auth()->user()->roles == 'admintf' )
+        <title>Dashboard Admin</title>
+        @endif
+        @if(auth()->user()->roles == 'mahasiswatf' || auth()->user()->roles == 'mahasiswasi' )
+        <title>Dashboard Mahasiswa</title>
+        @endif
+        @if(auth()->user()->roles == 'alumni')
+        <title>Dashboard Alumni</title>
+        @endif
         <!-- Favicon -->
         <link rel="icon" href="<?php echo asset('images/logo.png')?>" sizes="32x32">
 
@@ -44,7 +52,7 @@
     <div class="scrollbar-inner">
       <!-- Brand -->
       <div class="sidenav-header d-flex align-items-center">
-        <a class="navbar-brand" href="{{url('dashboard/admin')}}">
+        <a class="navbar-brand" href="{{url('dashboard')}}">
           <img src="{{ asset('images/logo3.png') }}" class="navbar-brand-img" alt="Fasilkom">
         </a>
         <div class="ml-auto">
@@ -81,7 +89,7 @@
             </li> --}}
             @if(auth()->user()->roles == 'admin' || auth()->user()->roles == 'adminsi' || auth()->user()->roles == 'admintf' )
             <li class="nav-item">
-                <a class="nav-link" href="{{url('dashboard/admin')}}">
+                <a class="nav-link" href="{{url('/dashboard')}}">
                   <i class="ni ni-shop text-primary"></i>
                   <span class="nav-link-text">Dashboards</span>
                 </a>
@@ -89,20 +97,21 @@
               @endif
               @if(auth()->user()->roles == 'mahasiswatf' || auth()->user()->roles == 'mahasiswasi')
             <li class="nav-item">
-                <a class="nav-link" href="{{url('dashboard/mahasiswa')}}">
+                <a class="nav-link" href="{{url('/dashboard')}}">
                   <i class="ni ni-shop text-primary"></i>
                   <span class="nav-link-text">Dashboards</span>
                 </a>
               </li>
               @endif
               @if(auth()->user()->roles == 'alumni')
-            <li class="nav-item">
-                <a class="nav-link" href="{{url('dashboard/alumni')}}">
+              <li class="nav-item">
+                <a class="nav-link" href="{{url('/dashboard')}}">
                   <i class="ni ni-shop text-primary"></i>
                   <span class="nav-link-text">Dashboards</span>
                 </a>
               </li>
               @endif
+
               @if(auth()->user()->roles == 'admin' || auth()->user()->roles == 'adminsi' || auth()->user()->roles == 'admintf')
             <li class="nav-item">
                 <a class="nav-link" href="#navbar-mhs" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-mhs">
@@ -112,7 +121,7 @@
                 <div class="collapse" id="navbar-mhs">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                      <a href="{{url('dashboard/admin/mahasiswa/datamhs')}}" class="nav-link">Data Mahasiswa</a>
+                      <a href="{{url('dashboard/admin/mahasiswa/datamhs')}}" class="nav-link">Data user</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{url('dashboard/admin/mahasiswa/pkl')}}" class="nav-link">Data PKL</a>
@@ -125,8 +134,8 @@
                     </li>
                   </ul>
                 </div>
-              </li>
-        <li class="nav-item">
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="#navbar-info" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-info">
                   <i class="fas fa-bullhorn text-orange"></i>
                   <span class="nav-link-text">Informasi & Berita</span>
@@ -148,12 +157,7 @@
                   </ul>
                 </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{url('dashboard/admin/alumni')}}">
-                  <i class="fas fa-address-card text-green"></i>
-                  <span class="nav-link-text">Alumni</span>
-                </a>
-              </li>
+              
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <i class="fas fa-users text-red"></i>
@@ -171,13 +175,13 @@
                 <div class="collapse" id="navbar-mhs">
                   <ul class="nav nav-sm flex-column">
                     <li class="nav-item">
-                      <a href="{{url('pkl')}}" class="nav-link">Data Mahasiswa PKL</a>
+                      <a href="{{url('dashboard/mahasiswa/pkl')}}" class="nav-link">Data Mahasiswa PKL</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{url('dashboard/admin/mahasiswa/pkl')}}" class="nav-link">Daftar PKL</a>
+                        <a href="{{url('dashboard/mahasiswa/pkl')}}" class="nav-link">Daftar PKL</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{url('dashboard/admin/mahasiswa/pkl')}}" class="nav-link">Pengumuman</a>
+                        <a href="{{url('dashboard/mahasiswa/pkl')}}" class="nav-link">Pengumuman</a>
                     </li>
                   </ul>
                 </div>
@@ -189,11 +193,11 @@
                 </a>
                 <div class="collapse" id="navbar-info">
                   <ul class="nav nav-sm flex-column">
-                    <li class="nav-item {{ (request()->is('dashboard/admin/news/pengumuman')) ? 'active' : '' }}">
-                      <a href="{{url('dashboard/admin/news/pengumuman')}}" class="nav-link">Data Mahasiswa Skripsi</a>
+                    <li class="nav-item {{ (request()->is('dashboard/admin/ta')) ? 'active' : '' }}">
+                      <a href="{{url('dashboard/mahasiswa/ta')}}" class="nav-link">Data Mahasiswa Skripsi</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{url('dashboard/admin/news/event')}}" class="nav-link">Daftar Skripsi</a>
+                        <a href="{{url('dashboard/mahasiswa/ta/')}}" class="nav-link">Daftar Skripsi</a>
                     </li>
                     <li class="nav-item {{ (request()->is('dashboard/admin/news/berita')) ? 'active' : '' }}">
                         <a href="{{url('dashboard/admin/news/berita')}}" class="nav-link">Pengumuman</a>
@@ -201,20 +205,9 @@
                   </ul>
                 </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{url('dashboard/admin/alumni')}}">
-                  <i class="fas fa-address-card text-green"></i>
-                  <span class="nav-link-text">Alumni</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="fas fa-users text-red"></i>
-                  <span class="nav-link-text">Ormawa</span>
-                </a>
-              </li>
               @endif
-              @if(auth()->user()->roles == 'mahasiswasi' || auth()->user()->roles == 'mahasiswatf')
+
+              @if(auth()->user()->roles == 'alumni')
               <li class="nav-item">
                 <a class="nav-link" href="#navbar-mhs" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-mhs">
                   <i class="ni ni-single-02 text-primary"></i>
@@ -225,9 +218,7 @@
                     <li class="nav-item">
                       <a href="{{url('pkl')}}" class="nav-link">Data Mahasiswa PKL</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{url('dashboard/admin/mahasiswa/pkl')}}" class="nav-link">Daftar PKL</a>
-                    </li>
+                    
                     <li class="nav-item">
                         <a href="{{url('dashboard/admin/mahasiswa/pkl')}}" class="nav-link">Pengumuman</a>
                     </li>
@@ -244,9 +235,6 @@
                     <li class="nav-item {{ (request()->is('dashboard/admin/news/pengumuman')) ? 'active' : '' }}">
                       <a href="{{url('dashboard/admin/news/pengumuman')}}" class="nav-link">Data Mahasiswa Skripsi</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{url('dashboard/admin/news/event')}}" class="nav-link">Daftar Skripsi</a>
-                    </li>
                     <li class="nav-item {{ (request()->is('dashboard/admin/news/berita')) ? 'active' : '' }}">
                         <a href="{{url('dashboard/admin/news/berita')}}" class="nav-link">Pengumuman</a>
                     </li>
@@ -257,12 +245,6 @@
                 <a class="nav-link" href="{{url('dashboard/admin/alumni')}}">
                   <i class="fas fa-address-card text-green"></i>
                   <span class="nav-link-text">Alumni</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <i class="fas fa-users text-red"></i>
-                  <span class="nav-link-text">Ormawa</span>
                 </a>
               </li>
               @endif
@@ -486,7 +468,12 @@
               <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="media align-items-center">
                   <span class="avatar avatar-sm rounded-circle">
-                    <img alt="Image placeholder" src="{{asset('storage/' . Auth::user()->avatar)}}">
+                    @if(auth()->user()->avatar == '')
+                    <img alt="Image placeholder" src="{{ asset('images/logo.png') }}">
+                    @endif
+                    @if(auth()->user()->avatar == true)
+                    <img alt="Image placeholder" src="/images/{{auth()->user()->avatar}}">
+                    @endif
                   </span>
                   <div class="media-body ml-2 d-none d-lg-block">
                     <span class="mb-0 text-sm  font-weight-bold">{{ Auth::user()->username }}</span>
@@ -497,7 +484,7 @@
                 <div class="dropdown-header noti-title">
                   <h6 class="text-overflow m-0">Welcome!</h6>
                 </div>
-                <a href="#!" class="dropdown-item">
+                <a href="dashboard/admin/editprofile" class="dropdown-item">
                   <i class="ni ni-single-02"></i>
                   <span>My profile</span>
                 </a>

@@ -54,9 +54,6 @@
             <li class="nav-item">
               <a href="/" class="nav-link {{ (request()->is('/')) ? 'active' : '' }}">Beranda</a>
             </li>
-            <li class="nav-item">
-              <a href="/login" class="nav-link {{ (request()->is('login')) ? 'active' : '' }}">Dashboard</a>
-            </li>
             {{-- <li class="nav-item dropdown">
               <a href="#" id="navbarDropdown"
                   class="nav-link dropdown-toggle"
@@ -110,6 +107,24 @@
             <li class="nav-item">
               <a href="contact.html" class="nav-link">Kontak Kami</a>
             </li>
+            @guest
+            <li class="nav-item ml-4">
+              <a href="/login" class="nav-link {{ (request()->is('login')) ? 'active' : '' }}"><b>Login</b></a>
+            </li>
+            @else
+            <li class="nav-item ml-4">
+              <span style="color:white"> Selamat Datang,
+              <br>
+              <a href="/home" style="color:white" class=" {{ (request()->is('login')) ? 'active' : '' }}">
+              @if(auth()->user()->username == true)
+              <b>{{auth()->user()->username}}</b>
+              @else
+              <span style="font-size:10px">{{auth()->user()->email}}</span>
+              @endif
+              </a>
+               </span>
+            </li>
+            @endguest
           </ul>
         </div>
       </div>

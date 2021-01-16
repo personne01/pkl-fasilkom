@@ -35,11 +35,11 @@
       </tr>
       <tr>
         <td>Afrizal Muhammad Yasin</td>
-                                <td>17081010092</td>
-                                <td>Informatika</td>
-                                <td>Sistem Informasi Prestasi Mahasiswa</td>
-                                <td>UPN</td>
-                                <td>Faisal M</td>
+        <td>17081010092</td>
+        <td>Informatika</td>
+        <td>Sistem Informasi Prestasi Mahasiswa</td>
+        <td>UPN</td>
+        <td>Faisal M</td>
       </tr>
     </tbody>
   </table>

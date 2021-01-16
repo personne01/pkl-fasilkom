@@ -16,7 +16,7 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('revalidate');
+        // $this->middleware('revalidate');
     }
     public function index()
     {
@@ -88,5 +88,10 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         //
+    }
+
+    public function edit_profile()
+    {
+        return view('admin.dashboard.editprofile');
     }
 }
