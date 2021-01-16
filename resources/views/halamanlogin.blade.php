@@ -133,7 +133,7 @@ portions of the Software. -->
                                     <h1>Login</h1>
                                 </div>
                                 {{-- <form role="form"> --}}
-                                <form method="POST" action="{{ route('login') }}">
+                                <form method="POST" action="{{ route('login_akun') }}">
                                     @csrf
                                     <div class="form-group mb-1">
                                         <div class="input-group input-group-merge input-group-alternative">
@@ -143,19 +143,19 @@ portions of the Software. -->
                                                 </span>
                                             </div>
                                             <input
-                                                placeholder="Username"
-                                                id="username"
+                                                placeholder="Email"
+                                                id="email"
                                                 type="text"
-                                                class="form-control @error('username') is-invalid @enderror"
-                                                name="username"
-                                                value="{{ old('username') }}"
+                                                class="form-control @error('email') is-invalid @enderror"
+                                                name="email"
+                                                value="{{ old('email') }}"
                                                 required="required"
-                                                autocomplete="username"
+                                                autocomplete="email"
                                                 autofocus="autofocus">
 
                                         </div>
                                     </div>
-                                    @error('username')
+                                    @error('email')
                                     {{-- <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span> --}}
@@ -197,15 +197,23 @@ portions of the Software. -->
                                         </button>
                                     </div>
                                     @enderror
-                                    <div class="custom-control custom-control-alternative custom-checkbox">
+                                    {{-- <div class="custom-control custom-control-alternative custom-checkbox">
                                         <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                                        {{-- <label class="custom-control-label" for=" customCheckLogin">
+                                        <label class="custom-control-label" for=" customCheckLogin">
                      <span class="text-muted">Remember me</span>
-                   </label> --}}
-                                    </div>
+                   </label>
+                                    </div> --}}
+
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary btn-block my-1">Sign In</button>
                                         {{-- <button type="button" class="btn btn-primary my-1">Sign in</button> --}}
+                                    </div>
+                                    <div class="text-right">
+                                        @if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
                                     </div>
                                 </form>
                             </div>

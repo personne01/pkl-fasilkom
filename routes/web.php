@@ -49,6 +49,15 @@ Route::get('/pkl', function() {
   Route::get('/pkl/create','pklController@create');
   Route::post('pkl/send_create', 'pklController@send_create');
 
+
+Route::match(['get', 'post'], '/register', function () {
+    return redirect("/login");
+});
+Route::match(['get', 'post'], '/login', function () {
+    return redirect("/login_akun");
+});
+Route::get('/login_akun', 'Auth\ProsesLoginController@index')->name('login');
+Route::post('/login_akun', 'Auth\ProsesLoginController@proses_login')->name('login_akun');
   //ADMIN ROLE
 Route::group(['middleware' => ['auth', 'checkrole:admin,adminsi,admintf']], function () {
     Route::get('/dashboard', 'AdminController@index');
@@ -71,7 +80,13 @@ Route::group(['middleware' => ['auth', 'checkrole:admin,adminsi,admintf']], func
 
 //MHS ROLE
 Route::group(['middleware' => ['auth', 'checkrole:mahasiswatf,mahasiswasi']], function () {
-  Route::get('/dashboard', 'AdminController@index');
+  /**
+   *  AKU SARANKAN BUAT / PAKE CONTROLLER MAHASISWA SENDIRI
+   *  BIAR GK CRASH SAMA CONTROLLER ADMIN
+   *  JGN LUPA DIUBAH
+   */
+
+    Route::get('/dashboardmhs', 'AdminController@index');
   Route::get('/home', 'AdminController@index');
       Route::group(['prefix' => 'dashboard/mahasiswa'], function () {
           Route::resource("prestasi", "PrestasiController");
